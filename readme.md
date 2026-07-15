@@ -1,236 +1,368 @@
 # 🧠 CollabBoard – Real-Time Collaborative AI Whiteboard
 
-CollabBoard is a **real-time collaborative infinite whiteboard platform** designed for brainstorming, teaching, planning, and team collaboration.  
-It combines **live drawing**, **real-time sync**, **AI assistance**, and **audio/video communication** into one unified experience.
+CollabBoard is a **real-time collaborative infinite whiteboard platform** designed for brainstorming, teaching, planning, and remote team collaboration. It combines smooth HTML5 canvas freehand drawing, WebRTC audio/video calls, AI assistance, Yjs conflict-free sync, and offline-first persistence into a highly robust and scalable monorepo platform.
 
-> Built as part of **HackSkill / Hackathon Project** by **Team CodeRangers**
-
----
-
-## 🚀 Live Demo
-> _(Add deployment link here if available)_  
-Example: `https://collabboard.vercel.app`
+> Built as part of a **Hackathon Project** by **Team CodeRangers** and enhanced with a production-ready **CollabBoard++** architecture.
 
 ---
 
-## ✨ Key Features
+# 🚀 Live Demo & Quick Deploy
 
-### 🖌️ Infinite Whiteboard
-- Smooth freehand drawing
-- Shapes, text, eraser tools
+- **Live App Demo:** `https://collabboard.vercel.app` *(Replace with your deployed URL)*
+- **API Documentation:** `http://localhost:4000/api/docs`
+
+---
+
+# ✨ Features Breakdown
+
+## 🎨 Infinite Interactive Canvas
+
+- Smooth freehand drawing powered by HTML5 Canvas & Konva
+- Rich toolbar supporting:
+  - Pen
+  - Rectangle
+  - Circle
+  - Line
+  - Text
+  - Brush customization
 - Infinite canvas with pan & zoom
-- Real-time cursor & drawing sync
+- AI-powered sketch correction using **Google Gemini**
+- Drag-and-drop image support
 
 ---
 
-### 👥 Real-Time Collaboration
-- Multiple users join the same room
-- Live board updates using **Socket.io**
-- Room-based collaboration using unique `roomId`
+## 👥 Conflict-Free Collaboration & Presence
+
+- Yjs CRDT synchronization
+- Live collaborative cursors (Figma-style)
+- Presence indicators
+- Dynamic private rooms using `roomId`
+- Conflict-free synchronization
 
 ---
 
-### 🎥 Audio & Video Calling (LiveKit)
-- Built-in **real-time video & audio calls**
-- One call per whiteboard room
-- Secure WebRTC connection using LiveKit
-- Mute / Unmute microphone
-- Camera on / off
-- Auto participant management
+## 🎥 WebRTC Audio & Video Calling
+
+- Built-in video & audio calls
+- Powered by **LiveKit**
+- Camera & microphone toggles
+- Automatic room joining
+- Participant synchronization
 
 ---
 
-### 🤖 AI-Powered Features
-- **AI Whiteboard Summary**
-  - Generates concise summaries of board content
-- **Visual Understanding**
-  - Reads the entire whiteboard (not just visible area)
-- **Auto Shape Correction**
-  - Converts rough sketches into clean shapes
-- Powered by **Google Gemini AI**
+## 🤖 Dual AI Engine (Gemini + OpenAI)
+
+### Google Gemini
+
+- Canvas understanding
+- OCR
+- Whiteboard summaries
+- Sketch recognition
+
+### OpenAI
+
+- Meeting summaries
+- Action item generation
+- Mermaid diagram generation
+- Idea organization
 
 ---
 
-### ☁️ Google Drive Integration
-- Save whiteboard snapshots directly to Google Drive
-- Useful for documentation and sharing
+## ☁️ Offline-First Architecture
+
+- IndexedDB offline outbox
+- Automatic sync on reconnect
+- Google Drive snapshot sync
+- Event sourcing
+- Version history
+- Restore previous whiteboard versions
 
 ---
 
-### 🔐 Authentication & Security
+## 🛡️ Security
+
 - Firebase Authentication
-- Secure user sessions
-- LiveKit tokens generated server-side only
-- No sensitive keys exposed on frontend
+- OAuth Login
+- JWT Authentication
+- Role Based Access Control
+
+Roles:
+
+- OWNER
+- EDITOR
+- VIEWER
 
 ---
 
-## 🧱 Tech Stack
+# 🧱 Monorepo Architecture
 
-### Frontend
-- **Next.js (App Router)**
-- React + TypeScript
-- Tailwind CSS
-- HTML5 Canvas
-
-### Backend / Infrastructure
-- Node.js
-- Socket.io (real-time sync)
-- Firebase (Auth + Firestore)
-
-### Video & Audio
-- **LiveKit (WebRTC)**
-
-### AI & Processing
-- Google Gemini API
-
----
-
-## 🗂️ Project Structure
-
-src/
-┣ app/
-┃ ┣ api/
-┃ ┃ ┣ livekit/
-┃ ┃ ┃ ┗ token/route.ts
-┃ ┣ room/[roomId]/
-┃ ┃ ┣ components/
-┃ ┃ ┃ ┣ Board.tsx
-┃ ┃ ┃ ┣ Canvas.tsx
-┃ ┃ ┃ ┣ VideoCall.tsx
-┃ ┃ ┃ ┣ Toolbar.tsx
-┃ ┃ ┃ ┗ RoomHeader.tsx
-┃ ┃ ┣ hooks/
-┃ ┃ ┣ utils/
-┃ ┃ ┗ page.tsx
-┣ lib/
-┣ utils/
-┗ globals.css
-
+```
+collabboard/
+│
+├── apps/
+│   └── api/
+│       ├── src/
+│       ├── prisma/
+│       └── package.json
+│
+├── packages/
+│   └── shared/
+│
+├── server/
+│   └── collabplus.js
+│
+├── src/
+│   ├── app/
+│   ├── components/
+│   ├── lib/
+│   └── utils/
+│
+├── docs/
+├── infra/
+│
+├── Dockerfile
+├── docker-compose.yml
+├── package.json
+└── server.js
+```
 
 ---
 
-## ⚙️ Environment Variables
+# 🛠️ Technology Stack
 
-Create a `.env.local` file in the root:
+| Layer | Technologies |
+|--------|--------------|
+| Frontend | Next.js (App Router), React 19, TypeScript |
+| Styling | Tailwind CSS, Lucide Icons, React Icons |
+| Canvas | HTML5 Canvas, Konva, React-Konva |
+| Collaboration | Yjs, Socket.IO, Y-IndexedDB |
+| State Management | Zustand |
+| Backend | NestJS |
+| Database | PostgreSQL, Prisma |
+| Authentication | Firebase Auth |
+| AI | Google Gemini, OpenAI GPT-4o-mini |
+| Video | LiveKit |
+| Cache | Redis |
+| Monitoring | Prometheus, Grafana |
+| DevOps | Docker, GitHub Actions |
+
+---
+
+# 🧬 System Architecture
+
+```mermaid
+graph TD
+
+Browser1[Browser Client 1] <-->|Socket.IO| SocketServer
+Browser2[Browser Client 2] <-->|Socket.IO| SocketServer
+
+subgraph Real-Time Collaboration
+
+SocketServer --> YjsRooms[Yjs Documents]
+SocketServer --> Redis[(Redis)]
+
+end
+
+subgraph Backend
+
+Browser1 --> NestAPI[NestJS API]
+NestAPI --> Prisma
+Prisma --> PostgreSQL[(PostgreSQL)]
+
+end
+
+subgraph AI Services
+
+Browser1 --> Gemini[Google Gemini]
+NestAPI --> OpenAI[GPT-4o-mini]
+
+end
+
+subgraph Video
+
+Browser1 --> LiveKit
+
+end
+```
+
+---
+
+# ⚡ Setup & Installation
+
+## 1. Clone Repository
+
+```bash
+git clone https://github.com/your-username/collab_board.git
+
+cd collab_board/Collab_Board
+```
+
+---
+
+## 2. Configure Environment Variables
+
+Create `.env.local`
 
 ```env
 # Firebase
-NEXT_PUBLIC_FIREBASE_API_KEY=xxxx
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=xxxx
+
+NEXT_PUBLIC_FIREBASE_API_KEY=your_key
+
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_domain
 
 # LiveKit
-LIVEKIT_API_KEY=xxxx
-LIVEKIT_API_SECRET=xxxx
-LIVEKIT_URL=wss://xxxx.livekit.cloud
 
-# Google AI
-GEMINI_API_KEY=xxxx
+LIVEKIT_API_KEY=your_key
 
----
+LIVEKIT_API_SECRET=your_secret
 
-## How to run locally 
-▶️ Running Locally
-1️⃣ Install dependencies
-npm install
+LIVEKIT_URL=wss://your.livekit.cloud
 
-2️⃣ Start development server
-npm run dev
+# AI
 
-3️⃣ Open in browser
-http://localhost:3000
+GEMINI_API_KEY=your_key
 
----
+OPENAI_API_KEY=your_key
 
-🧪 How to Test Video Call
+OPENAI_MODEL=gpt-4o-mini
 
-Open the same room in two browsers
+# Backend
 
-Click 🎥 Join Call
+NEXT_PUBLIC_COLLAB_PLUS=true
 
-Allow camera & microphone
+COLLAB_API_URL=http://localhost:4000
 
-You will see and hear each other in real time
+REDIS_URL=redis://localhost:6379
 
-🧠 How It Works (High Level)
-User joins Room
-   ↓
-Socket.io syncs whiteboard
-   ↓
-LiveKit token generated (server)
-   ↓
-WebRTC video/audio connection
-   ↓
-AI processes whiteboard data
+DATABASE_URL=postgresql://collabboard:collabboard@localhost:5432/collabboard
 
-🏆 Why CollabBoard?
+JWT_SECRET=your_secret
 
-Combines collaboration + communication + AI
-
-Designed for classrooms, hackathons, teams, and remote work
-
-Lightweight, scalable, and extensible
-
-Inspired by tools like Miro, FigJam, Notion Whiteboard, but smarter
+API_PORT=4000
+```
 
 ---
 
-## 🚀 CollabBoard++ (Production layer — additive)
+## 3. Start Infrastructure
 
-The original CollabBoard app is **fully preserved**. CollabBoard++ adds:
+```bash
+npm run docker:up
+```
 
-- **Yjs CRDT** sync (`server/collabplus.js` + `src/lib/collabplus/yjs/`)
-- **Offline-first** IndexedDB outbox
-- **Event sourcing** + version history UI (`/room/[id]/versions`)
-- **Figma-style presence** cursors
-- **OpenAI** meeting summary, action items, Mermaid diagrams (`/api/v1/ai/*`)
-- **Analytics dashboard** (`/analytics`)
-- **NestJS API** + **PostgreSQL** + **Prisma** (`apps/api/`)
-- **Redis** Socket.IO scaling (set `REDIS_URL`)
-- **Docker / K8s / CI** (`docker-compose.yml`, `infra/`, `.github/workflows/`)
+---
 
-See [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) and [.env.example](./.env.example).
+## 4. Install Dependencies
 
 ```bash
 npm install
-npm run dev                    # original + ++ socket handlers
-npm run docker:up              # postgres, redis, prometheus, grafana
-npm run dev:api                # Nest API on :4000
 ```
 
-Toggle ++ features in the room via the **CollabBoard++** toolbar (or `NEXT_PUBLIC_COLLAB_PLUS=false` to hide).
+---
+
+## 5. Initialize Database
+
+```bash
+npm run prisma:push
+
+npm run prisma:generate
+```
 
 ---
 
-## 🔮 Future Enhancements
+## 6. Run Application
 
-Screen sharing
+Frontend
 
-Call recording
+```bash
+npm run dev
+```
 
-AI meeting summary ✅ (CollabBoard++ OpenAI + existing Gemini)
+Backend
 
-Voice-to-text notes
-
-Role-based permissions ✅ (CollabBoard++ Nest RBAC)
-
-Export to PDF / image
-
----
-
-##📜 License
-
-This project is built for educational and hackathon purposes.
+```bash
+npm run dev:api
+```
 
 ---
 
-## 🙌 Acknowledgements
+# 📈 Monitoring
 
-LiveKit
+Prometheus
 
-Google Gemini AI
+```
+http://localhost:9090
+```
 
-Firebase
+Grafana
 
-Open-source community
+```
+http://localhost:3001
+
+Username: admin
+
+Password: admin
+```
+
 ---
+
+# 🧪 Testing Collaboration
+
+1. Start both servers.
+2. Open:
+
+```
+http://localhost:3000
+```
+
+3. Create a room.
+
+4. Open the room in another browser.
+
+5. Join video call.
+
+6. Draw simultaneously.
+
+7. Observe:
+
+- Real-time drawing
+- Live cursors
+- Presence
+- Audio/video synchronization
+
+---
+
+# 🔮 Future Enhancements
+
+- Screen Sharing
+- SVG Export
+- PDF Export
+- Speech-to-Text
+- Sticky Notes
+- Flowchart Connectors
+- Shape Grouping
+- AI Meeting Minutes
+- Advanced Whiteboard Templates
+
+---
+
+# 📜 License
+
+This project is released for educational and hackathon purposes.
+
+Feel free to fork, modify, and extend it.
+
+---
+
+# 🙌 Acknowledgements
+
+- LiveKit
+- Yjs
+- Google Gemini
+- OpenAI
+- Firebase
+- Prisma
+- PostgreSQL
+- Next.js
+- React
+- NestJS
