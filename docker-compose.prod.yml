@@ -1,0 +1,54 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: collabboard
+      POSTGRES_PASSWORD: collabboard
+      POSTGRES_DB: collabboard
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    env_file:
+      - .env.production
+    environment:
+      DATABASE_URL: postgresql://collabboard:collabboard@postgres:5432/collabboard
+      REDIS_URL: redis://redis:6379
+      API_PORT: 4000
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3000}
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - '4000:4000'
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env.production
+    environment:
+      PORT: 10000
+      HOSTNAME: 0.0.0.0
+      COLLAB_API_URL: http://api:4000
+      REDIS_URL: redis://redis:6379
+    depends_on:
+      - api
+    ports:
+      - '10000:10000'
+    restart: unless-stopped
+
+volumes:
+  pgdata:

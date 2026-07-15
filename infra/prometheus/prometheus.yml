@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: collabboard-api
+    static_configs:
+      - targets: ['api:4000']
+    metrics_path: /api/v1/health
+
+  - job_name: prometheus
+    static_configs:
+      - targets: ['localhost:9090']
