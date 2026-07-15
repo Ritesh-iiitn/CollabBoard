@@ -20,7 +20,7 @@ services:
           property: host
       - key: REDIS_URL
         fromService:
-          type: redis
+          type: keyvalue
           name: collabboard-redis
           property: connectionString
       # The following must be set manually in Render UI or filled before deploying
@@ -58,7 +58,7 @@ services:
           property: connectionString
       - key: REDIS_URL
         fromService:
-          type: redis
+          type: keyvalue
           name: collabboard-redis
           property: connectionString
       - key: JWT_SECRET
@@ -66,12 +66,12 @@ services:
       - key: OPENAI_API_KEY
         sync: false
 
-# 3. Managed PostgreSQL Database
-databases:
-  - name: collabboard-db
+  # 3. Managed Redis Instance
+  - type: keyvalue
+    name: collabboard-redis
     plan: free
 
-# 4. Managed Redis Instance
-redis:
-  - name: collabboard-redis
+# 4. Managed PostgreSQL Database
+databases:
+  - name: collabboard-db
     plan: free
