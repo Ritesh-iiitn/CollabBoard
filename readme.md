@@ -2,14 +2,13 @@
 
 CollabBoard is a **real-time collaborative infinite whiteboard platform** designed for brainstorming, teaching, planning, and remote team collaboration. It combines smooth HTML5 canvas freehand drawing, WebRTC audio/video calls, AI assistance, Yjs conflict-free sync, and offline-first persistence into a highly robust and scalable monorepo platform.
 
-> Built as part of a **Hackathon Project** by **Team CodeRangers** and enhanced with a production-ready **CollabBoard++** architecture.
 
 ---
 
 # 🚀 Live Demo & Quick Deploy
 
-- **Live App Demo:** `https://collabboard.vercel.app` *(Replace with your deployed URL)*
-- **API Documentation:** `http://localhost:4000/api/docs`
+- **Live App Demo:** 'https://collabboard-web.onrender.com'
+- 
 
 ---
 
