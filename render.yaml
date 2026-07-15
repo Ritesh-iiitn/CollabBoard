@@ -5,7 +5,7 @@ services:
     env: docker
     dockerfilePath: Dockerfile
     dockerContext: .
-    plan: starter
+    plan: free
     envVars:
       - key: PORT
         value: 10000
@@ -43,7 +43,7 @@ services:
     env: docker
     dockerfilePath: apps/api/Dockerfile
     dockerContext: .
-    plan: starter
+    plan: free
     envVars:
       - key: API_PORT
         value: 4000
