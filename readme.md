@@ -205,41 +205,20 @@ cd collab_board/Collab_Board
 Create `.env.local`
 
 ```env
-# Firebase
+# Firebase Configuration
+NEXT_PUBLIC_FIREBASE_API_KEY=your_firebase_api_key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_firebase_auth_domain
 
-NEXT_PUBLIC_FIREBASE_API_KEY=your_key
+# LiveKit SFU (Video/Audio Calls)
+LIVEKIT_API_KEY=your_livekit_api_key
+LIVEKIT_API_SECRET=your_livekit_api_secret
+LIVEKIT_URL=wss://your-project.livekit.cloud
 
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your_domain
-
-# LiveKit
-
-LIVEKIT_API_KEY=your_key
-
-LIVEKIT_API_SECRET=your_secret
-
-LIVEKIT_URL=wss://your.livekit.cloud
-
-# AI
-
-GEMINI_API_KEY=your_key
-
-OPENAI_API_KEY=your_key
-
+# AI Services
+GEMINI_API_KEY=your_gemini_api_key
+OPENAI_API_KEY=your_openai_api_key
 OPENAI_MODEL=gpt-4o-mini
 
-# Backend
-
-NEXT_PUBLIC_COLLAB_PLUS=true
-
-COLLAB_API_URL=http://localhost:4000
-
-REDIS_URL=redis://localhost:6379
-
-DATABASE_URL=postgresql://collabboard:collabboard@localhost:5432/collabboard
-
-JWT_SECRET=your_secret
-
-API_PORT=4000
 ```
 
 ---
