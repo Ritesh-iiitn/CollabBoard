@@ -8,7 +8,6 @@ CollabBoard is a **real-time collaborative infinite whiteboard platform** design
 # 🚀 Live Demo & Quick Deploy
 
 - **Live App Demo:** 'https://collabboard-web.onrender.com'
-- 
 
 ---
 
@@ -192,8 +191,7 @@ end
 ## 1. Clone Repository
 
 ```bash
-git clone https://github.com/your-username/collab_board.git
-
+git clone https://github.com/Ritesh-iiitn/CollabBoard.git
 cd collab_board/Collab_Board
 ```
 
@@ -264,25 +262,7 @@ npm run dev:api
 
 ---
 
-# 📈 Monitoring
 
-Prometheus
-
-```
-http://localhost:9090
-```
-
-Grafana
-
-```
-http://localhost:3001
-
-Username: admin
-
-Password: admin
-```
-
----
 
 # 🧪 Testing Collaboration
 
