@@ -70,6 +70,7 @@ services:
   - type: keyvalue
     name: collabboard-redis
     plan: free
+    ipAllowList: []
 
 # 4. Managed PostgreSQL Database
 databases:
